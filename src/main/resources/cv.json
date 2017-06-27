@@ -1,0 +1,31 @@
+[
+  {
+    "title": {
+      "en-GB": "Curriculum",
+      "pt-PT": "Curriculum"
+    },
+    "description": {
+      "en-GB": "Curriculum document and associated certificates.",
+      "pt-PT": "Curriculo e certificados de habilitações."
+    },
+    "slug": "cv",
+    "fields": [
+      {
+        "type": "file",
+        "key": "cv",
+        "label": {
+          "en-GB": "Curriculum Vitae",
+          "pt-PT": "Currículo Vitae"
+        }
+      },
+      {
+        "type": "file",
+        "key": "skill-certificate",
+        "label": {
+          "en-GB": "Skills Certificate",
+          "pt-PT": "Certificado de Habilitações"
+        }
+      }
+    ]
+  }
+]

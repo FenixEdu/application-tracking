@@ -1,0 +1,19 @@
+<div ng-if="readOnly">
+  {{$parent.ngModel}}
+</div>
+
+<div ng-if="disabled">
+  <div class="bennu-datetime-input-group input-group date">
+    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    <input type="text" class="form-control" disabled>
+  </div>
+</div>
+
+<div ng-if="!readOnly && !disabled">
+  <input type="text" class="form-control" bennu-date-time="$parent.$parent.ngModel" ng-blur="validateIfNecessary()" />
+
+  <ul ng-if="errors && errors.length > 0">
+    <li style="color: red" ng-repeat="error in errors">{{error}}</li>
+  </ul>
+</div>
+

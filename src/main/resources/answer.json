@@ -1,0 +1,15 @@
+[{
+	"slug": "bio",
+	"fields": {
+		"name": "David Martinho",
+		"nif": 1231231313,
+		"nif2": 1231231313,
+		"email": "davidmartinhogmail.com",
+		"email2": "davidmartinho@gmail.com"
+	}
+},
+{
+	"slug": "cv",
+	"fields": {
+	}
+}]

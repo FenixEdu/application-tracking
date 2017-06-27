@@ -1,0 +1,63 @@
+[
+  {
+    "title": {
+      "en-GB": "Skills",
+      "pt-PT": "Habilitações"
+    },
+    "description": {
+      "en-GB": "Here you should specify the applicant previous skills.",
+      "pt-PT": "Aqui deve indicar as habilitações do candidato."
+    },
+    "slug": "skills",
+    "fields": [
+      {
+        "type": "text",
+        "key": "first-cycle-name",
+        "label": {
+          "en-GB": "First cycle degree name",
+          "pt-PT": "Nome do curso de primeiro ciclo"
+        }
+      },
+      {
+        "type": "date",
+        "key": "first-cycle-conclusion-date",
+        "label": {
+          "en-GB": "First cycle conclusion date",
+          "pt-PT": "Data conclusão do primeiro ciclo"
+        }
+      },
+      {
+        "type": "text",
+        "key": "first-cycle-grade",
+        "label": {
+          "en-GB": "First cycle final grade",
+          "pt-PT": "Nota final no primeiro ciclo"
+        }
+      },
+      {
+        "type": "radio-group",
+        "key": "internal",
+        "label": {
+          "en-GB": "First cycle in this institution",
+          "pt-PT": "Primeiro ciclo feito nesta instituição"
+        },
+        "options": [
+          {
+            "key": "y",
+            "label": {
+              "en-GB": "Yes",
+              "pt-PT": "Sim"
+            }
+          },
+          {
+            "key": "n",
+            "label": {
+              "en-GB": "No",
+              "pt-PT": "Não"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

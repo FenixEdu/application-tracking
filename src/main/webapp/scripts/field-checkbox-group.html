@@ -1,0 +1,29 @@
+<div ng-if="readOnly">
+  <div ng-repeat="(k,v) in $parent.ngModel">
+    <p ng-if="v">{{k|optionlabel:$parent.value.options}}</p>
+  </div>
+</div>
+
+<div ng-if="disabled">
+  <div ng-repeat="option in $parent.value.options"> 
+    <div class="checkbox">
+      <label>
+        <input disabled type="checkbox" name="{{$parent.value.key}}" value="{{option.key}}" ng-model="$parent.$parent.$parent.ngModel[option.key]" ng-false-value="undefined" /> 
+        {{option.label | i18n}}
+      </label>
+    </div>
+  </div>
+</div>
+
+
+<div ng-if="!readOnly && !disabled">
+  <div ng-repeat="option in $parent.value.options">	
+  	<div class="checkbox">
+  	  <label>
+  	    <input type="checkbox" name="{{$parent.value.key}}" value="{{option.key}}" ng-model="$parent.$parent.$parent.ngModel[option.key]" ng-false-value="undefined" /> 
+  	    {{option.label | i18n}}
+  	  </label>
+  	</div>
+  </div>
+</div>
+

@@ -1,0 +1,11 @@
+<div ng-if="readOnly || $parent.ngModel">
+	<img ng-src="{{$parent.ngModel.downloadLink}}" style="width: 150px" />
+</div>
+
+<div ng-if="disabled">
+  <input disabled type="file" />
+</div>
+
+<div ng-if="!readOnly && !disabled">
+  <input type="file" ngf-select="uploadFile($file, $parent.$parent.ngModel)" />
+</div>

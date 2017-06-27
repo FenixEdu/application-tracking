@@ -1,0 +1,170 @@
+[
+  {
+    "title": {
+      "en-GB": "Applicant Data",
+      "pt-PT": "Dados do Candidato"
+    },
+    "description": {
+      "en-GB": "Here you should specify the applicant personal info.",
+      "pt-PT": "Aqui deve indicar informação pessoal acerca do candidato."
+    },
+    "slug": "bio",
+    "fields": [
+      {
+        "type": "text",
+        "key": "name",
+        "label": {
+          "en-GB": "Name",
+          "pt-PT": "Nome"
+        }
+      },
+      {
+        "type": "radio-group",
+        "key": "gender",
+        "label": {
+          "en-GB": "Gender",
+          "pt-PT": "Sexo"
+        },
+        "options": [
+          {
+            "key": "f",
+            "label": {
+              "en-GB": "Female",
+              "pt-PT": "Feminino"
+            }
+          },
+          {
+            "key": "m",
+            "label": {
+              "en-GB": "Male",
+              "pt-PT": "Masculino"
+            }
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "key": "habilitation",
+        "label": {
+          "en-GB": "Degree",
+          "pt-PT": "Habilitação"
+        },
+        "options": [
+          {
+            "key": "msc",
+            "label": {
+              "en-GB": "Master of Science",
+              "pt-PT": "Mestrado"
+            }
+          },
+          {
+            "key": "phd",
+            "label": {
+              "en-GB": "Doctor of Philosophy",
+              "pt-PT": "Doutor Caramba"
+            }
+          }
+        ]
+      },
+      {
+        "type": "checkbox-group",
+        "key": "interests",
+        "label": {
+          "en-GB": "Interests",
+          "pt-PT": "Interesses"
+        },
+        "options": [
+          {
+            "key": "ui",
+            "label": {
+              "en-GB": "User Interface",
+              "pt-PT": "Interface Utilizador"
+            }
+          },
+          {
+            "key": "programming",
+            "label": {
+              "en-GB": "Programming",
+              "pt-PT": "Programação"
+            }
+          }
+        ]
+      },
+      {
+        "type": "file",
+        "key": "cv",
+        "label": {
+          "en-GB": "CV",
+          "pt-PT": "Currículo Vitae"
+        }
+      },
+      {
+        "type": "text",
+        "key": "email2",
+        "label": {
+          "en-GB": "Email2",
+          "pt-PT": "Endereço Eletrónico2"
+        },
+        "validator": "email-validator"
+      },
+      {
+        "type": "text",
+        "key": "nif",
+        "label": {
+          "en-GB": "VAT Portuguese Number",
+          "pt-PT": "NIF"
+        },
+        "validator": "nif-validator"
+      },
+      {
+        "type": "text",
+        "key": "nif2",
+        "label": {
+          "en-GB": "VAT Portuguese Number 2",
+          "pt-PT": "NIF 2"
+        },
+        "validator": "nif-validator"
+      }
+    ]
+  },
+  {
+    "title": {
+      "en-GB": "Recomendation Letters",
+      "pt-PT": "Cartas de Recomendação"
+    },
+    "description": {
+      "en-GB": "In this form, you should specify your recommendation letters",
+      "pt-PT": "Neste formulário deve submeter as suas cartas de recomendação."
+    },
+    "slug": "cv",
+    "fields": [
+      {
+        "type": "text",
+        "key": "name",
+        "required": {
+          "exists": {
+            "key": "bio.name"
+          }
+        },
+        "label": {
+          "en-GB": "Name",
+          "pt-PT": "Nome"
+        }
+      },
+      {
+        "type": "file",
+        "key": "cv",
+        "include-if": {
+          "equals": {
+            "key": "bio.name",
+            "value": "David"
+          }
+        },
+        "label": {
+          "en-GB": "CV",
+          "pt-PT": "Currículo Vitae"
+        }
+      }
+    ]
+  }
+]

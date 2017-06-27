@@ -1,0 +1,64 @@
+[
+  {
+    "type":"text",
+    "name": { "en-GB": "Text", "pt-PT": "Texto" }
+  },
+
+  {
+    "type":"textarea",
+    "name": { "en-GB": "Text Area", "pt-PT": "Área de Texto" }
+  },
+
+  {
+    "type":"select",
+    "name": { "en-GB": "Select", "pt-PT": "Caixa de combinação" },
+    "multiple":true
+  },
+  
+  {
+    "type":"radio-group",
+    "name": { "en-GB": "Radio Button Group", "pt-PT": "Grupo de Botão de opção" },
+    "multiple":true
+  },
+  
+  {
+    "type":"password",
+    "name": { "en-GB": "Password", "pt-PT": "Password" }
+  },
+  
+  {
+    "type":"file",
+    "name": { "en-GB": "File", "pt-PT": "Ficheiro" }
+  },
+  
+  {
+    "type":"country",
+    "name": { "en-GB": "Country", "pt-PT": "País" }
+  },
+
+  {
+    "type":"date",
+    "name": { "en-GB": "Date", "pt-PT": "Data" }
+  },
+
+  {
+    "type":"time",
+    "name": { "en-GB": "Time", "pt-PT": "Hora" }
+  },
+
+  {
+    "type":"datetime",
+    "name": { "en-GB": "Date and Time", "pt-PT": "Data e Hora" }
+  },
+
+  {
+    "type":"checkbox-group",
+    "name": { "en-GB": "Checkbox", "pt-PT": "Caixa de seleção" },
+    "multiple":true
+  },
+
+  {
+    "type":"avatar",
+    "name": { "en-GB": "Avatar", "pt-PT": "Fotografia" }
+  }
+]

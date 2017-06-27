@@ -1,0 +1,11 @@
+<div class="row">
+    <div class="col-sm-2">
+        {{data.type.name | i18n}}
+    </div>
+    <div class="col-sm-10">
+        <select class="form-control" ng-model="selectedOption" ng-change="onSelectOption()" ng-options="slot.name | i18n for slot in data.slots track by slot.code">
+            <option value="">--</option>
+        </select>
+    </div>
+</div>
+<slot-selection ng-if="selectedOption.children" data="selectedOption.children" pos="pos+1" writeback="writeback"></slot-selection>

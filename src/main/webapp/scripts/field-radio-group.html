@@ -1,0 +1,26 @@
+<div ng-if="readOnly">
+  {{$parent.ngModel|optionlabel:$parent.value.options}}
+</div>
+
+<div ng-if="disabled">
+  <div ng-repeat="option in $parent.value.options">
+    <div class="radio">
+      <label>
+        <input disabled type="radio" name="{{$parent.value.key}}" value="{{option.key}}" ng-model="$parent.$parent.$parent.ngModel" />
+        {{option.label | i18n }}
+      </label>
+    </div>
+  </div>
+</div>
+
+<div ng-if="!readOnly && !disabled">
+  <div ng-repeat="option in $parent.value.options">
+  	<div class="radio">
+  	  <label>
+  	    <input type="radio" name="{{$parent.value.key}}" value="{{option.key}}" ng-model="$parent.$parent.$parent.ngModel" />
+  	    {{option.label | i18n }}
+  	  </label>
+  	</div>
+  </div>
+</div>
+

@@ -1,0 +1,174 @@
+[
+  {
+    "title": {
+      "en-GB": "Applicant Data",
+      "pt-PT": "Dados do Candidato"
+    },
+    "description": {
+      "en-GB": "Here you should specify the applicant personal info.",
+      "pt-PT": "Aqui deve indicar informação pessoal acerca do candidato."
+    },
+    "slug": "bio",
+    "fields": [
+      {
+        "type": "avatar",
+        "key": "avatar",
+        "label": {
+          "en-GB": "Photo",
+          "pt-PT": "Fotografia"
+        }
+      },
+      {
+        "type": "text",
+        "key": "given-name",
+        "label": {
+          "en-GB": "Given Names",
+          "pt-PT": "Nomes Próprios"
+        }
+      },
+      {
+        "type": "text",
+        "key": "family-name",
+        "label": {
+          "en-GB": "Family Names",
+          "pt-PT": "Apelidos"
+        }
+      },
+      {
+        "type": "radio-group",
+        "key": "gender",
+        "label": {
+          "en-GB": "Gender",
+          "pt-PT": "Sexo"
+        },
+        "options": [
+          {
+            "key": "f",
+            "label": {
+              "en-GB": "Female",
+              "pt-PT": "Feminino"
+            }
+          },
+          {
+            "key": "m",
+            "label": {
+              "en-GB": "Male",
+              "pt-PT": "Masculino"
+            }
+          }
+        ]
+      },
+      {
+        "type": "date",
+        "key": "birthdate",
+        "label": {
+          "en-GB": "Birthdate",
+          "pt-PT": "Data de Nascimento"
+        }
+      },
+      {
+        "type": "text",
+        "key": "id-number",
+        "label": {
+          "en-GB": "ID Number",
+          "pt-PT": "Número de Identificação"
+        }
+      },
+      {
+        "type": "select",
+        "key": "id-type",
+        "label": {
+          "en-GB": "Type",
+          "pt-PT": "Tipo"
+        },
+        "options": [
+          {
+            "key": "IDENTITY_CARD",
+            "label": {
+              "en-GB": "Bilhete de Identidade",
+              "pt-PT": "Bilhete de Identidade"
+            }
+          },
+          {
+            "key": "PASSPORT",
+            "label": {
+              "en-GB": "Passaporte",
+              "pt-PT": "Passaporte"
+            }
+          },
+          {
+            "key": "RESIDENCE_AUTHORIZATION",
+            "label": {
+              "en-GB": "Doctor of Philosophy",
+              "pt-PT": "Autorização de Residência"
+            }
+          }
+        ]
+      },
+      {
+        "type": "date",
+        "key": "id-validity",
+        "label": {
+          "en-GB": "Validity Date",
+          "pt-PT": "Data de Validade"
+        }
+      },
+      {
+        "type": "text",
+        "key": "nationality",
+        "label": {
+          "en-GB": "Nationality",
+          "pt-PT": "Nacionalidade"
+        }
+      },
+      {
+        "type": "text",
+        "key": "nif",
+        "label": {
+          "en-GB": "Tax Code",
+          "pt-PT": "Nº de Contribuinte"
+        }
+      },
+      {
+        "type": "text",
+        "key": "contry-of-residence",
+        "label": {
+          "en-GB": "Country of Residence",
+          "pt-PT": "País de Residencia"
+        }
+      },
+      {
+        "type": "text",
+        "key": "address",
+        "label": {
+          "en-GB": "Address",
+          "pt-PT": "Morada"
+        }
+      },
+      {
+        "type": "text",
+        "key": "zip-code",
+        "label": {
+          "en-GB": "Zip Code",
+          "pt-PT": "Código Postal"
+        }
+      },
+      {
+        "type": "text",
+        "key": "parish",
+        "label": {
+          "en-GB": "Parish",
+          "pt-PT": "Localidade"
+        }
+      },
+      {
+        "type": "text",
+        "key": "phone",
+        "label": {
+          "en-GB": "Phone Number",
+          "pt-PT": "Telefone"
+        }
+      }
+    ]
+  }
+]

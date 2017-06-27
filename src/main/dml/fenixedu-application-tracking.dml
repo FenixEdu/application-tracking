@@ -1,0 +1,539 @@
+package org.fenixedu.applicationtracking.domain;
+
+enum org.fenixedu.applicationtracking.domain.StateType as StateType;
+
+valueType java.math.BigDecimal as BigDecimalAPTR {
+    externalizeWith {
+        String toString();
+    }
+}
+
+valueType java.time.LocalDateTime as LocalDateTime {
+    externalizeWith {
+        String toString();
+    }
+
+    internalizeWith parse();
+}
+
+valueType org.fenixedu.applicationtracking.domain.Form as Form {
+    externalizeWith {
+        JsonElement json();
+    }
+
+    internalizeWith fromJson();
+}
+
+valueType org.fenixedu.applicationtracking.domain.FormAnswer as FormAnswer {
+    externalizeWith {
+        JsonElement json();
+    }
+
+    internalizeWith fromJson();
+}
+
+valueType java.time.Instant as Instant {
+    externalizeWith {
+        long toEpochMilli();
+    }
+
+    internalizeWith ofEpochMilli();
+}
+
+valueType javax.money.MonetaryAmount as MonetaryAmount {
+    externalizeWith {
+        String org.fenixedu.applicationtracking.util.MoneyConverter.format();
+    }
+
+    internalizeWith org.fenixedu.applicationtracking.util.MoneyConverter.parse();
+}
+
+public class ApplicationTracking;
+
+public class Period {
+    public String slug (REQUIRED);
+    public LocalizedString name (REQUIRED);
+    public LocalizedString description;
+    public LocalDateTime start (REQUIRED);
+    public LocalDateTime end (REQUIRED);
+    protected bytearray signatureKey (REQUIRED);
+}
+
+public class MessageTemplate {
+    protected String templateKey (REQUIRED);
+    public String name (REQUIRED);
+    public LocalizedString subject (REQUIRED);
+    public LocalizedString plainBody (REQUIRED);
+    public LocalizedString body (REQUIRED);
+}
+
+public class PaymentInstructionsTemplate {
+    public LocalizedString body;
+}
+
+public class Application {
+    protected String number;
+    protected String givenNames;
+    protected String familyNames;
+    protected String email;
+    protected StateType state;
+    protected LocalDateTime creation (REQUIRED);
+}
+
+public class ApplicationActivityLog {
+    protected Instant when (REQUIRED);
+    protected String role;
+    protected StateType state;
+    protected LocalizedString customAction;
+}
+
+public class ApplicationFile extends .org.fenixedu.bennu.io.domain.GenericFile {
+    protected String id;
+    protected boolean confirmed;
+}
+
+public class Comment {
+    public String text;
+}
+
+public class Actor {
+    protected String secret;
+    protected String actorName;
+    protected String actorType;
+    public Locale locale (REQUIRED);
+}
+
+public class RequirementConfiguration {
+    public BigDecimalAPTR weigth;
+    protected int order (REQUIRED);
+    protected Form formSpec;
+}
+
+public class Requirement {
+    public LocalizedString name;
+    public LocalizedString description;
+    protected Form formSpec;
+}
+
+public class RequirementFulfilment {
+    protected boolean complete;
+    public BigDecimalAPTR grade;
+    protected FormAnswer formAnswerSpec;
+}
+
+public class Recommendation {
+}
+
+public class RecommendationConfiguration {
+    public int min;
+    public int max;
+}
+
+public class PurposeConfiguration {
+    public int maxSlotsPerApplication (REQUIRED);
+    protected Form formSpec;
+}
+
+public class Purpose {
+    public LocalizedString name (REQUIRED);
+    public LocalizedString description;
+    protected Form formSpec;
+}
+
+public class PurposeFulfilment {
+    protected FormAnswer formAnswerSpec;
+    public String placerResult;
+}
+
+public class Slot {
+    public String code (REQUIRED);
+    public LocalizedString name (REQUIRED);
+    public int vacancies;
+}
+
+protected class SlotSelection {
+    public int order;
+}
+
+public class ApplicationFee {
+    public MonetaryAmount amount;
+    public boolean perSlot;
+}
+
+public class FieldValidator {
+    String slug (REQUIRED);
+    LocalizedString title;
+    LocalizedString description;
+    LocalizedString errorMessage;
+    NashornStrategy<FieldValidator.Validator> validationCode;
+}
+
+public class SlotType{
+  String code;
+  LocalizedString name;
+}
+
+relation ApplicationTrackingRoot {
+    protected .org.fenixedu.bennu.core.domain.Bennu playsRole root {
+        multiplicity 1..1;
+    }
+    public ApplicationTracking playsRole applicationTracking {
+        multiplicity 0..1;
+    }
+}
+
+relation ApplicationTrackingBackofficeGroup {
+    protected ApplicationTracking playsRole applicationTracking {
+        multiplicity 0..1;
+    }
+    protected .org.fenixedu.bennu.core.domain.groups.PersistentGroup playsRole backofficePersistentGroup {
+        multiplicity 1..1;
+    }
+}
+
+relation ApplicationFieldValidators {
+    protected ApplicationTracking playsRole root {
+        multiplicity 1..1;
+    }
+    protected FieldValidator playsRole fieldValidator {
+        multiplicity *;
+    }
+}
+
+
+relation ApplicationPeriods {
+    protected ApplicationTracking playsRole root {
+        multiplicity 1..1;
+    }
+    protected Period playsRole period {
+        multiplicity *;
+    }
+}
+
+relation ApplicationActors {
+    protected Application playsRole application {
+        multiplicity 1..1;
+    }
+    protected Actor playsRole actor {
+        multiplicity 1..*;
+    }
+}
+
+relation ApplicationApplicant {
+    protected Application playsRole applicationAsApplicant {
+        multiplicity 0..1;
+    }
+    protected Actor playsRole applicant {
+        multiplicity 1..1;
+    }
+}
+
+relation ApplicationUser {
+    public Application playsRole application {
+        multiplicity *;
+    }
+    protected .org.fenixedu.bennu.core.domain.User playsRole user {
+        multiplicity 0..1;
+    }
+}
+
+relation ApplicationFiles {
+    public Application playsRole application {
+        multiplicity 1..1;
+    }
+    public ApplicationFile playsRole file {
+        multiplicity *;
+    }
+}
+
+relation ApplicationPurposes {
+    protected ApplicationTracking playsRole root {
+        multiplicity 1..1;
+    }
+    protected Purpose playsRole purpose {
+        multiplicity *;
+    }
+}
+
+relation ApplicationRequirements {
+    protected ApplicationTracking playsRole root {
+        multiplicity 1..1;
+    }
+    protected Requirement playsRole requirement {
+        multiplicity *;
+    }
+}
+
+relation PeriodPurpose {
+    protected Period playsRole period {
+        multiplicity 1..1;
+    }
+    protected PurposeConfiguration playsRole purposeConfiguration {
+        multiplicity 1..1;
+    }
+}
+
+relation PeriodRequirements {
+    protected Period playsRole period {
+        multiplicity 1..1;
+    }
+    protected RequirementConfiguration playsRole requirementConfiguration {
+        multiplicity *;
+    }
+}
+
+relation PeriodApplications {
+    protected Period playsRole period {
+        multiplicity 1..1;
+    }
+    protected Application playsRole application {
+        multiplicity *;
+    }
+}
+
+relation PeriodTemplates {
+    protected Period playsRole period {
+        multiplicity 1..1;
+    }
+    public MessageTemplate playsRole template {
+        multiplicity *;
+    }
+}
+
+relation ApplicationTrackingPaymentInstructionsTemplate {
+    protected ApplicationTracking playsRole applicationTracking {
+        multiplicity 1..1;
+    }
+    protected PaymentInstructionsTemplate playsRole paymentInstructionsTemplate {
+        multiplicity 1..1;
+    }
+}
+
+relation PurposeConfigurations {
+    protected Purpose playsRole purpose {
+        multiplicity 1..1;
+    }
+    protected PurposeConfiguration playsRole purposeConfiguration {
+        multiplicity *;
+    }
+}
+
+relation PurposeConfigurationSlots {
+    protected PurposeConfiguration playsRole purposeConfiguration {
+        multiplicity 0..1;
+    }
+    public Slot playsRole slot {
+        multiplicity *;
+    }
+}
+
+relation PurposeConfigurationApplicationFee {
+    protected PurposeConfiguration playsRole purposeConfiguration {
+        multiplicity 1..1;
+    }
+    public ApplicationFee playsRole applicationFee {
+        multiplicity 0..1;
+    }
+}
+
+relation RequirementConfigurationRequirement {
+    protected Requirement playsRole requirement {
+        multiplicity 1..1;
+    }
+    protected RequirementConfiguration playsRole requirementConfiguration {
+        multiplicity *;
+    }
+}
+
+relation RequirementConfigurationRecommendationConfiguration {
+    protected RequirementConfiguration playsRole requirementConfiguration {
+        multiplicity *;
+    }
+    protected RecommendationConfiguration playsRole recommendationConfiguration {
+        multiplicity 0..1;
+    }
+}
+
+relation RequirementRecommendationConfiguration {
+    protected Requirement playsRole requirement {
+        multiplicity *;
+    }
+    protected RecommendationConfiguration playsRole recommendationConfiguration {
+        multiplicity 0..1;
+    }
+}
+
+relation ApplicationComments {
+    protected Application playsRole application {
+        multiplicity 1..1;
+    }
+    protected Comment playsRole comment {
+        multiplicity *;
+    }
+}
+
+relation ApplicationActivityLogs {
+    protected Application playsRole application {
+        multiplicity 1..1;
+    }
+    protected ApplicationActivityLog playsRole log {
+        multiplicity *;
+    }
+}
+
+relation ApplicationActivityLogUserWho {
+    protected ApplicationActivityLog playsRole log {
+        multiplicity *;
+    }
+    protected .org.fenixedu.bennu.core.domain.User playsRole userWho {
+        multiplicity 0..1;
+    }
+}
+
+relation ApplicationActivityLogActorWho {
+    protected ApplicationActivityLog playsRole log {
+        multiplicity *;
+    }
+    protected Actor playsRole actorWho {
+        multiplicity 0..1;
+    }
+}
+
+relation ApplicationActivityLogComment {
+    protected ApplicationActivityLog playsRole log {
+        multiplicity 1..1;
+    }
+    protected Comment playsRole comment {
+        multiplicity 0..1;
+    }
+}
+
+relation ApplicationPurposeFulfilment {
+    protected Application playsRole application {
+        multiplicity 1..1;
+    }
+    protected PurposeFulfilment playsRole purposeFulfilment {
+        multiplicity 1..1;
+    }
+}
+
+relation ApplicationRequirementFulfilment {
+    protected Application playsRole application {
+        multiplicity 1..1;
+    }
+    protected RequirementFulfilment playsRole requirementFulfilment {
+        multiplicity *;
+    }
+}
+
+relation PurposeFulfilmentConfiguration {
+    protected PurposeConfiguration playsRole purposeConfiguration {
+        multiplicity 1..1;
+    }
+    protected PurposeFulfilment playsRole purposeFulfilment {
+        multiplicity *;
+    }
+}
+
+relation PurposeFulfilmentPaidFee {
+    protected PurposeFulfilment playsRole purposeFulfilment {
+        multiplicity *;
+    }
+    public ApplicationFee playsRole paidFee {
+        multiplicity 0..1;
+    }
+}
+
+relation PurposeFulfilmentSlotSelection {
+    protected PurposeFulfilment playsRole purposeFulfilment {
+        multiplicity 1..1;
+    }
+    protected SlotSelection playsRole selectedSlot {
+        multiplicity *;
+    }
+}
+
+relation SlotSelectionSlot {
+    protected SlotSelection playsRole selectedSlot {
+        multiplicity *;
+    }
+    protected Slot playsRole slot {
+        multiplicity 1..1;
+    }
+}
+
+relation Placement {
+    protected Application playsRole placedApplicant {
+        multiplicity *;
+    }
+    protected Slot playsRole placement {
+        multiplicity 0..1;
+    }
+}
+
+relation RequirementFulfilmentConfiguration {
+    protected RequirementConfiguration playsRole requirementConfiguration {
+        multiplicity 1..1;
+    }
+    protected RequirementFulfilment playsRole requirementFulfilment {
+        multiplicity *;
+    }
+}
+
+relation RequirementFulfilmentRecommendation {
+    protected RequirementFulfilment playsRole requirementFulfilment {
+        multiplicity 1..1;
+    }
+    protected Recommendation playsRole recommendation {
+        multiplicity *;
+    }
+}
+
+relation RecommendationConfigurationRecommendation {
+    protected RecommendationConfiguration playsRole recommendationConfiguration {
+        multiplicity 1..1;
+    }
+    protected Recommendation playsRole recommendation {
+        multiplicity *;
+    }
+}
+
+relation SlotTypeSlotType {
+    protected SlotType playsRole child {
+        multiplicity 0..1;
+    }
+    protected SlotType playsRole parent {
+        multiplicity 0..1;
+    }
+}
+
+relation SlotTypeSlot {
+ 
+    protected SlotType playsRole type {
+        multiplicity 1..1;
+    }
+
+    protected Slot playsRole slots {
+        multiplicity *;
+    }
+}
+
+relation SlotTypePurposeConfiguration {
+    PurposeConfiguration playsRole purposeConfiguration {
+        multiplicity 0..1;
+    }
+
+     SlotType playsRole slotTypeRoot {
+        multiplicity 0..1;
+    }   
+}
+
+relation SlotSlot{
+  Slot playsRole parent {
+        multiplicity 0..1;
+  }
+
+  Slot playsRole slot{
+      multiplicity *;
+  }
+}
